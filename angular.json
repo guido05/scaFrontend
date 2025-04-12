@@ -95,20 +95,12 @@
                         "karmaConfig": "karma.conf.js",
                         "assets": [
                             "src/favicon.ico",
-                            "src/assets",
-                            "src/fake-data",
-                            "src/web.config"
+                            "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss",
-                            "node_modules/ngx-toastr/toastr.css",
-                            "node_modules/select2/dist/css/select2.min.css"
+                            "src/styles.scss"
                         ],
-                        "scripts": [
-                            "node_modules/jquery/dist/jquery.min.js",
-                            "node_modules/datatables.net/js/jquery.dataTables.js",
-                            "node_modules/select2/dist/js/select2.min.js"
-                        ]
+                        "scripts": []
                     }
                 },
                 "lint": {
