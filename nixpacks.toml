@@ -1,3 +1,8 @@
+[phases.setup]
+nixPkgs = ["nodejs-16_x", "gcc", "g++", "make", "python3"]
+
 [phases.build]
 cmds = ["npm install", "npm run build"]
-nixPkgs = ["gcc", "g++", "make"]
+
+[start]
+cmd = "npx http-server dist/ng-gradient-able -p $PORT"
