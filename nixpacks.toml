@@ -5,9 +5,6 @@ builder = 'nixpacks'
 [variables]
 NODE_OPTIONS = '--openssl-legacy-provider'
 
-[phases.setup]
-nixPkgs = ['nodejs-16_x', 'gcc', 'g++', 'make', 'python3']
-
 [phases.build]
 cmds = ['npm install', 'npm run build']
 
