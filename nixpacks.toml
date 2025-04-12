@@ -1,8 +1,15 @@
+[build]
+nixpacksVersion = 1
+builder = 'nixpacks'
+
+[variables]
+NODE_OPTIONS = '--openssl-legacy-provider'
+
 [phases.setup]
-nixPkgs = ["nodejs-16_x", "gcc", "g++", "make", "python3"]
+nixPkgs = ['nodejs-16_x', 'gcc', 'g++', 'make', 'python3']
 
 [phases.build]
-cmds = ["npm install", "npm run build"]
+cmds = ['npm install', 'npm run build']
 
 [start]
-cmd = "npx http-server dist/ng-gradient-able -p $PORT"
+cmd = 'npx http-server dist/ng-gradient-able -p $PORT'
