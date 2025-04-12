@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Editar un asistencia' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="asistenciaForm">
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Condicion' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="id_condicion" id="id_condicion"
+              placeholder="{{'Condicion' | translate}}" formControlName="id_condicion">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Asistencia' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="id_asistencia" id="id_asistencia"
+              placeholder="{{'Asistencia' | translate}}" formControlName="id_asistencia">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Dia' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="id_dia" id="id_dia"
+              placeholder="{{'Dia' | translate}}" formControlName="id_dia">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Hora Entrada' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="horaEntrada" id="horaEntrada"
+              placeholder="{{'Hora Entrada' | translate}}" formControlName="horaEntrada">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Hora Salida' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="horaSalida" id="horaSalida"
+              placeholder="{{'Hora Salida' | translate}}" formControlName="horaSalida">
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Fecha' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="fecha" id="fecha"
+              placeholder="{{'Fecha' | translate}}" formControlName="fecha">
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Observacion' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="observacion" id="observacion"
+              placeholder="{{'Observacion' | translate}}" formControlName="observacion">
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Subtotal' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="subtotal" id="subtotal"
+              placeholder="{{'Subtotal' | translate}}" formControlName="subtotal">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="asistenciaForm.invalid"
+          (click)="this.saveAsistencia()"> {{'Confirmar' | translate}}</button>
+        <div class="form-group">
+          <button class="btn btn-dark mb-2" (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+        </div>
+      </form>
+</app-card>
+</div>
+</div>

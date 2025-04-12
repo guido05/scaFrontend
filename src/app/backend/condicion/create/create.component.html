@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Crear un nuevo condicion' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="condicionForm">
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Sigla' | translate}}</label>
+          <div class = "col-md-5">
+              <input class="form-control" required type="text" name="sigla" id="sigla" placeholder="{{'Sigla de la condicion' | translate}}" formControlName="sigla">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Descripcion' | translate}}</label>
+          <div class = "col-md-5">
+              <input class="form-control" required type="text" name="descripcion" id="descripcion" placeholder="{{'descripcion de la condicion' | translate}}" formControlName="descripcion">
+          </div>
+        </div>
+     
+      <div>
+      </div>
+      <button  type="submit" class="btn btn-primary mb-2" [disabled]="condicionForm.invalid" (click)="this.addCondicion()"> {{'Confirmar' | translate}}</button>
+      <div class="form-group">
+        <button class="btn btn-dark mb-2"  (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+       </div>
+    </form>
+</app-card>
+</div>
+</div>

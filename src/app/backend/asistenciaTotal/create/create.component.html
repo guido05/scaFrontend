@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Crear un nuevo asistencia total' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="asistenciaTotalForm">
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Mes' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="id_mes" id="id_mes"
+              placeholder="{{'Mes de la asistencia' | translate}}" formControlName="id_mes">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Año' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="ano" id="ano"
+              placeholder="{{'Año de la asistencia' | translate}}" formControlName="ano">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Id Asistencia' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="id_asistencia" id="id_asistencia"
+              placeholder="{{'Id Asistencia' | translate}}" formControlName="id_asistencia">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Tiempo Hora Anual' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="tiempo_hora_anual" id="tiempo_hora_anual"
+              placeholder="{{'Tiempo Hora Anual' | translate}}" formControlName="tiempo_hora_anual">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Tiempo Hora Mensual' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="tiempo_hora_mensual" id="tiempo_hora_mensual"
+              placeholder="{{'Tiempo Hora Mensual' | translate}}" formControlName="tiempo_hora_mensual">
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Tiempo Hora Primera Quincena' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="tiempo_hora_primera_quincena" id="tiempo_hora_primera_quincena"
+              placeholder="{{'Tiempo Hora Primera Quincena' | translate}}" formControlName="tiempo_hora_primera_quincena">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Tiempo Hora Segunda Quincena' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="tiempo_hora_segunda_quincena" id="tiempo_hora_segunda_quincena"
+              placeholder="{{'Tiempo Hora Segunda Quincena' | translate}}" formControlName="tiempo_hora_segunda_quincena">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="asistenciaTotalForm.invalid"
+          (click)="this.addAsistenciaTotal()"> {{'Confirmar' | translate}}</button>
+        <div class="form-group">
+          <button class="btn btn-dark mb-2" (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Editar un Dia' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="diaForm">
+        <div class="form-group">
+          <label for="nombre">{{'Nombre' | translate}}</label>
+          <input class="form-control" required type="text" name="nombre" id="nombre" placeholder="{{'Nombre del dia' | translate}}" formControlName="nombre">
+        </div>
+      <button  type="submit" class="btn btn-primary mb-2" (click)="saveDia()">{{'Confirmar' | translate}}</button>
+      <div class="form-group">
+        <button class="btn btn-dark mb-2" (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+       </div>
+    </form>
+</app-card>
+</div>
+</div>

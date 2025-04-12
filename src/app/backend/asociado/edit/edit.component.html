@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Editar un asociado' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="asociadoForm">
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Nombre' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="nombre" id="nombre"
+              placeholder="{{'Nombre del asocaido' | translate}}" formControlName="nombre">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Apellido' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="apellido" id="apellido"
+              placeholder="{{'Apellido del asocaido' | translate}}" formControlName="apellido">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Legajo' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="legajo" id="legajo"
+              placeholder="{{'Legajo del asocaido' | translate}}" formControlName="legajo">
+          </div>
+        </div>
+      
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Documento' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="documento" id="documento"
+              placeholder="{{'Documento del asociado' | translate}}" formControlName="documento">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Categorias' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="categorias" id="categorias"
+              placeholder="{{'Categorias del asociado' | translate}}" formControlName="categorias">
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Telefono' | translate}}</label>
+          <div class="col-md-5">
+            <input class="form-control" required type="text" name="telefono" id="telefono"
+              placeholder="{{'Telefono del asocaido' | translate}}" formControlName="telefono">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="asociadoForm.invalid"
+          (click)="this.saveAsociado()"> {{'Confirmar' | translate}}</button>
+        <div class="form-group">
+          <button class="btn btn-dark mb-2" (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+        </div>
+      </form>
+</app-card>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Crear un nuevo mes' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="mesForm">
+
+        <div class="form-group">
+          <label class="col-md-0.5">{{'Nombre' | translate}}</label>
+          <div class = "col-md-5">
+              <input class="form-control" required type="text" name="mes" id="mes" placeholder="{{'Nombre del mes' | translate}}" formControlName="nombre">
+          </div>
+        </div>
+     
+      <div>
+      </div>
+      <button  type="submit" class="btn btn-primary mb-2" [disabled]="mesForm.invalid" (click)="this.addMes()"> {{'Confirmar' | translate}}</button>
+      <div class="form-group">
+        <button class="btn btn-dark mb-2"  (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+       </div>
+    </form>
+</app-card>
+</div>
+</div>

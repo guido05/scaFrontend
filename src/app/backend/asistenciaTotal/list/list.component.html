@@ -1,0 +1,102 @@
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <button style="float: right;" class="btn btn-primary mb-2" [routerLink]="'/backend/asistenciaTotal/create/'">Nuevo Asistencia Total</button>
+                    <h5 class="m-b-10">Listado de Asistencia Total</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Panel de Control</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm-12">
+        <app-card [hidHeader]="false" cardClass="card-datatable" [options]="false">
+            <div class="dt-responsive table-responsive">
+                <table datatable="ng" id="tabla" class="table table-striped row-border table-hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead>
+                        <tr>
+                            <th>{{'Id Mes' | translate}}</th>
+                            <th>{{'Año' | translate}}</th>
+                            <th>{{'Tiempo Hora Anual' | translate}}</th>
+                            <th>{{'Tiempo Hora Mensual' | translate}}</th>
+                            <th>{{'Tiempo Hora Primera Quincena' | translate}}</th>
+                            <th>{{'Tiempo Hora Primera Quincena' | translate}}</th>
+                            <th>{{'Acciones' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let asistenciaTotal of asistenciasTotales">
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ asistenciaTotal.id_mes }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ asistenciaTotal.ano }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ asistenciaTotal.tiempo_hora_anual }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ asistenciaTotal.tiempo_hora_mensual }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ asistenciaTotal.tiempo_hora_primera_quincena }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ asistenciaTotal.tiempo_hora_segunda_quincena }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <button type="button" class="btn btn-icon btn-success" [routerLink]="'../edit/'+ asistenciaTotal.id"><i class="feather icon-settings"></i></button>
+                                    <button type="button" class="btn btn-icon btn-danger" (click)="deleteAsistenciaTotal(asistenciaTotal.id)" title="{{'Eliminar' | translate}}"><i class="feather icon-trash-2"></i></button>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>{{'Id Mes' | translate}}</th>
+                            <th>{{'Año' | translate}}</th>
+                            <th>{{'Tiempo Hora Anual' | translate}}</th>
+                            <th>{{'Tiempo Hora Mensual' | translate}}</th>
+                            <th>{{'Tiempo Hora Primera Quincena' | translate}}</th>
+                            <th>{{'Tiempo Hora Primera Quincena' | translate}}</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <button style="float: right;" class="btn btn-primary mb-2" [routerLink]="'/backend/mes/create/'">Nuevo Mes</button>
+                    <h5 class="m-b-10">Listado de Meses</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Panel de Control</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm-12">
+        <app-card [hidHeader]="false" cardClass="card-datatable" [options]="false">
+            <div class="dt-responsive table-responsive">
+                <table datatable="ng" id="tabla" class="table table-striped row-border table-hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>{{'Meses' | translate}}</th>
+                            <th>{{'Acciones' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mes of meses">
+                            <td>
+                                <div class="d-inline-block align-middle">
+                                    <div class="d-inline-block">
+                                        <h6 class="m-b-0">{{ mes.nombre }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <button type="button" class="btn btn-icon btn-success" [routerLink]="'../edit/' + mes.id"><i class="feather icon-settings"></i></button>
+                                    <button type="button" class="btn btn-icon btn-danger" (click)="deleteMes(mes.id)" title="{{'Eliminar' | translate}}"><i class="feather icon-trash-2"></i></button>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>{{'Meses' | translate}}</th>
+                            <th>{{'Acciones' | translate}}</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

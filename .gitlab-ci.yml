@@ -1,0 +1,48 @@
+stages:
+  - build
+  - deliver
+  # - deploy
+
+variables:
+  TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  artifacts:
+    paths:
+      - images
+  before_script:
+    - mkdir images
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - docker build -t $TAG -f compose/production/Dockerfile .
+    - docker save $TAG > images/app.tar
+  only:
+    - production
+
+deliver:
+  stage: deliver
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - docker load -i images/app.tar
+    - docker push $TAG
+  only:
+    - production
+  dependencies:
+    - build
+# deploy:
+#   stage: deploy
+#   image: ?
+#   script:
+#     - TODO
+#   only:
+#     - production
+#   dependencies:
+#     - deliver

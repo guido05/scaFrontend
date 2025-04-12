@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="{{'Editar un Mes' | translate}}" [options]="false">
+      <form class="form-group" [formGroup]="sueldoBasicoForm">
+        <div class="form-group">
+          <label for="sueldoBasico">{{'Sueldo Basico' | translate}}</label>
+          <input class="form-control" required type="text" name="sueldoBasico" id="sueldoBasico" placeholder="{{'Sueldo basico' | translate}}" formControlName="sueldo_basico">
+        </div>
+        <div class="form-group">
+          <label for="categoria">{{'Categoria' | translate}}</label>
+          <input class="form-control" required type="text" name="categoria" id="categoria" placeholder="{{'Categoria' | translate}}" formControlName="categoria">
+        </div>
+        <div class="form-group">
+          <label for="porcentajeMes">{{'Porcentaje Mes' | translate}}</label>
+          <input class="form-control" required type="text" name="porcentajeMes" id="porcentajeMes" placeholder="{{'Porcentaje Mes' | translate}}" formControlName="porcentajeMes">
+        </div>
+      <button  type="submit" class="btn btn-primary mb-2" (click)="saveSueldoBasico()">{{'Confirmar' | translate}}</button>
+      <div class="form-group">
+        <button class="btn btn-dark mb-2" (click)="goToList()">{{'Volver a la lista' | translate}}</button>
+       </div>
+    </form>
+</app-card>
+</div>
+</div>

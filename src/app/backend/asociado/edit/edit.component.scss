@@ -1,0 +1,11 @@
+@mixin app-list-edit-theme($theme) {
+
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  app-edit{
+        .wrapper {
+          text-align: center;
+        }
+  }
+}
