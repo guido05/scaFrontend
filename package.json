@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "http-server dist/ng-gradient-able -p $PORT",
+    "dev": "ng serve",
+    "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -53,7 +54,6 @@
     "famfamfam-flags": "^1.0.0",
     "fullcalendar": "^3.10.1",
     "highcharts": "^6.2.0",
-    "http-server": "^14.1.1",
     "image-to-base64": "^2.1.0",
     "jquery": "^3.5.1",
     "moment": "^2.24.0",
