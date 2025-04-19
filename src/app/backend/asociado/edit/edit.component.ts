@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MostrarNotificacionService } from 'src/app/core/services/mostrarNotificacion/mostrar-notificacion.service';
 import { AsociadoService } from 'src/app/core/services/asociado/asociado.service';
 import { Asociado } from 'src/app/core/model/asociado';
+import { CategoriaService } from 'src/app/core/services/categoria/categoria.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class EditComponent implements OnInit, OnDestroy {
   asociadoForm: FormGroup;
   id: number;
   asociado: Asociado;
+  categorias: [];
   /**
  * Constructor
  *
@@ -27,15 +29,18 @@ export class EditComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     public mostrarNotificacionService: MostrarNotificacionService,
-    private asociadoService: AsociadoService
+    private asociadoService: AsociadoService,
+    private categoriaService: CategoriaService
   ) {
   }
 
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.getById();
     this.asociadoForm = this.editAsociadoForm();
+    this.getCategoria();
+    this.getById();
+
   }
 
   /**
@@ -57,12 +62,12 @@ export class EditComponent implements OnInit, OnDestroy {
   editAsociadoForm(): FormGroup {
     return this._formBuilder.group({
       id: [this.id],
-      nombre: [this.asociado.nombre],
-      apellido: [this.asociado.apellido],
-      legajo: [this.asociado.legajo],
-      categorias: [this.asociado.categorias],
-      telefono: [this.asociado.telefono],
-      documento: [this.asociado.documento]
+      nombre: [''],
+      apellido: [''],
+      legajo: [''],
+      categorias: [''],
+      telefono: [''],
+      documento: ['']
     });
   }
 
@@ -72,6 +77,7 @@ export class EditComponent implements OnInit, OnDestroy {
   saveAsociado(): void {
     const data = this.asociadoForm.getRawValue();
     data.id = this.id;
+    data.categorias = data.categorias.map(c => c.id);
     this.asociadoService.update(data)
       .subscribe(result => {
         this.mostrarNotificacionService.showSuccess('Se modificó con éxito', 'Confirmación');
@@ -90,15 +96,19 @@ export class EditComponent implements OnInit, OnDestroy {
   getById() {
     this.asociadoService.getById(this.id)
       .subscribe(data => {
-        this.asociado = new Asociado(data);
+        console.log(data);
+        this.asociado = new Asociado(data.data);
+        console.log(this.asociado);
         this.asociadoForm = this._formBuilder.group({
           nombre: [this.asociado.nombre],
           apellido: [this.asociado.apellido],
           legajo: [this.asociado.legajo],
           categorias: [this.asociado.categorias],
           telefono: [this.asociado.telefono],
-          documento: [this.asociado.documento]
+          documento: [this.asociado.documento],
+          activo:[this.asociado.activo]
         });
+        console.log(this.asociado);
       }, error => {
         if (error.status === 500) {
           this.mostrarNotificacionService.showWarning('Error al recuperar los datos', 'Error de servidor');
@@ -111,6 +121,12 @@ export class EditComponent implements OnInit, OnDestroy {
   goToList() {
     this.router.navigate(['../backend/asociado/list/']);
   }
+
+  getCategoria(){
+    this.categoriaService.getAll().subscribe(response=>{
+      this.categorias = response.data;
+    });
+   }
 
 
 }

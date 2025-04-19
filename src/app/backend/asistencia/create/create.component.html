@@ -3,42 +3,30 @@
     <app-card cardTitle="{{'Crear una nueva asistencia' | translate}}" [options]="false">
       <form class="form-group" [formGroup]="asistenciaForm">
 
-          <label for="condicion">{{ "Condicion" | translate }}</label>
-          <div class="ng-autocomplete">
-            <ng-autocomplete
-              [data]="condiciones"
-              [searchKeyword]="keyword"
-              (selected)="selectEventCondicion($event)"
-              (inputChanged)="onChangeCondicion($event)"
-              (inputFocused)="onFocused($event)"
-              [itemTemplate]="itemTemplate"
-              [notFoundTemplate]="notFoundTemplate"
-            >
-            </ng-autocomplete>
-
-            <ng-template #itemTemplate let-item>
-              <a [innerHTML]="item.descripcion"></a>
-            </ng-template>
-
-            <ng-template #notFoundTemplate let-notFound>
-              <div [innerHTML]="notFound"></div>
-            </ng-template>
-          </div>
-
         <div class="form-group">
-          <label class="col-md-0.5">{{'Asistencia' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="id_asistencia" id="id_asistencia"
-              placeholder="{{'Asistencia' | translate}}" formControlName="id_asistencia">
-          </div>
+        <label for="asociado">{{ "Asociado" | translate }}</label>
+        <div class="ng-autocomplete">
+          <ng-autocomplete
+            [data]="asociados"
+            [searchKeyword]="keywordAsociado"  
+            (selected)="selectEventAsociado($event)"
+            (inputChanged)="onChangeAsociado($event)"
+            (inputFocused)="onFocused($event)"
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate"
+          >
+          </ng-autocomplete>
+
+          <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.documento"></a>
+          </ng-template>
+
+          <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+          </ng-template>
         </div>
-        <div class="form-group">
-          <label class="col-md-0.5">{{'Dia' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="id_dia" id="id_dia"
-              placeholder="{{'Dia' | translate}}" formControlName="id_dia">
-          </div>
-        </div>
+      </div>
+      <br>         
 
         <div class="form-group">
           <label class="col-md-0.5">{{'Hora Entrada' | translate}}</label>
@@ -71,14 +59,32 @@
               placeholder="{{'Observacion' | translate}}" formControlName="observacion">
           </div>
         </div>
-       
+        
         <div class="form-group">
-          <label class="col-md-0.5">{{'Subtotal' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="subtotal" id="subtotal"
-              placeholder="{{'Subtotal' | translate}}" formControlName="subtotal">
+          <label for="condicion">{{ "Condicion" | translate }}</label>
+          <div class="ng-autocomplete">
+            <ng-autocomplete
+              [data]="condiciones"
+              [searchKeyword]="keywordCondicion"
+              (selected)="selectEventCondicion($event)"
+              (inputChanged)="onChangeCondicion($event)"
+              (inputFocused)="onFocused($event)"
+              [itemTemplate]="itemTemplateCondicion"
+              [notFoundTemplate]="notFoundTemplateCondicion"
+            >
+            </ng-autocomplete>
+
+            <ng-template #itemTemplateCondicion let-item>
+              <a [innerHTML]="item.descripcion"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplateCondicion let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
           </div>
         </div>
+          <br>
+
         <button type="submit" class="btn btn-primary mb-2" [disabled]="asistenciaForm.invalid"
           (click)="this.addAsistencia()"> {{'Confirmar' | translate}}</button>
         <div class="form-group">

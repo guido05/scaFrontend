@@ -66,4 +66,19 @@ export class ListComponent implements OnInit
         }
       });
   }
+
+    activateAsociado(id:number){
+      this.asociadoService.activate(id)
+      .subscribe(
+        data =>{
+          this.getAsociado()
+        },
+        error => {
+          if(error.status === 500){
+            this.mostrarNotificacionService.showWarning('No se pudo activar el asociado','Error de Servidor');
+          }else{
+            this.mostrarNotificacionService.showWarning(error,'');
+          }
+        });
+    }
 }

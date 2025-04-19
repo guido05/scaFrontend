@@ -50,6 +50,13 @@ export class AsociadoService {
       )
   }
 
+  activate(id): Observable<any> {
+    return this.httpClient.delete<Asociado>(this.apiServer + '/activeAsociados/' +  id)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     let mensaje = '';

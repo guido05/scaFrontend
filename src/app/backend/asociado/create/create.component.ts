@@ -14,7 +14,7 @@ import { CategoriaService } from 'src/app/core/services/categoria/categoria.serv
 export class CreateCanalComponent implements OnInit, OnDestroy {
   asociadoForm: FormGroup;
 
-  public keyword = '';
+  public keyword = 'nombre';
   selectedCategoria: any;
   categorias: [];
 
@@ -28,40 +28,22 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
     private categoriaService:CategoriaService
   ) {}
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Lifecycle hooks
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * On init
-   */
   ngOnInit(): void {
     this.asociadoForm = this.createAsociadoForm();
+    this.getCategoria();
   }
 
-  /**
-   * On destroy
-   */
   ngOnDestroy(): void {
 
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Create product form
-   *
-   * @returns {FormGroup}
-   */
   createAsociadoForm(): FormGroup {
     return this._formBuilder.group({
       id: [],
       nombre: [''],
       apellido: [''],
       legajo: [''],
-      categorias: [''],
+      categorias:  this._formBuilder.array([]),
       telefono: [''],
       documento: ['']
     });
@@ -69,7 +51,7 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
 
   addAsociado() {
     const data = this.asociadoForm.getRawValue();
-    data.categoria = this.selectedCategoria;
+    data.categorias.push(this.selectedCategoria);
     this.asociadoService.create(data).subscribe(
       response => {
         this.mostrarNotificacionService.showSuccess('Se agregó con éxito', 'Confirmación');
@@ -94,18 +76,15 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
     }
 
   onChangeCategoria(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
-    this.keyword = "nombre";
     this.getCategoria();
   }
 
   selectEventCategoria(item) {
-    
     this.selectedCategoria= item.id;
   }
 
   getCategoria(){
+
     this.categoriaService.getAll().subscribe(response=>{
       this.categorias = response.data;
     });

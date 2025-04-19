@@ -7,6 +7,7 @@ export class Asociado {
     categorias: string;
     telefono: string;
     documento: string;
+    activo: number;
 
     /**
      * Constructor
@@ -23,6 +24,7 @@ export class Asociado {
         this.categorias = asociado.categorias || '';
         this.telefono = asociado.telefono || '';
         this.documento = asociado.documento || '';
+        this.activo = asociado.activo || 0;
     }
 
 }

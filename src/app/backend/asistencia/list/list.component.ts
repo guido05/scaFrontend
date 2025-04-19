@@ -70,6 +70,7 @@ export class ListComponent implements OnInit
   findAsistenciaWithUserAndRegAndAsociado(){
     this.asistenciaService.findByUserAndRegAndAsociado().subscribe(response=>{
       this.asistencias = response.data;
+      console.log(this.asistencias);
       if (this.isDtInitialized) {
         $('#tabla').DataTable().destroy();
       } else {

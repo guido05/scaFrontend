@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {MostrarNotificacionService} from 'src/app/core/services/mostrarNotificacion/mostrar-notificacion.service';
 import { AsistenciaService } from 'src/app/core/services/asistencia/asistencia.service';
 import { CondicionService } from 'src/app/core/services/condicion/condicion.service';
+import { AsociadoService } from 'src/app/core/services/asociado/asociado.service';
 
 @Component({
   selector: 'app-create-asistencia',
@@ -14,11 +15,12 @@ import { CondicionService } from 'src/app/core/services/condicion/condicion.serv
 export class CreateCanalComponent implements OnInit, OnDestroy {
   asistenciaForm: FormGroup;
   condiciones: [];
+  asociados: [];
 
-  public keyword = 'descripcion';
+  public keywordCondicion = 'descripcion';
+  public keywordAsociado = 'documento';
   selectedCondicion: any;
-
-
+  selectedAsociado: any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -28,6 +30,7 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
     public mostrarNotificacionService: MostrarNotificacionService,
     private asistenciaService: AsistenciaService,
     private condicionService: CondicionService,
+    private asociadoService: AsociadoService
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -40,6 +43,7 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.asistenciaForm = this.createAsistenciaForm();
     this.getCondicion();
+    this.getAsociado();
   }
 
   /**
@@ -62,19 +66,18 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
     return this._formBuilder.group({
       id: [],
       id_condicion: [''],
-      id_asistencia: [''],
-      id_dia: [''],
+      id_asociado: [''],
       horaEntrada: [''],
       horaSalida: [''],
       fecha: [''],
-      observacion:[''],
-      subtotal: ['']
+      observacion:['']
     });
   }
 
   addAsistencia() {
     const data = this.asistenciaForm.getRawValue();
     data.id_condicion = this.selectedCondicion;
+    data.id_asociado = this.selectedAsociado;
     this.asistenciaService.create(data).subscribe(
       response => {
         this.mostrarNotificacionService.showSuccess('Se agregó con éxito', 'Confirmación');
@@ -108,9 +111,25 @@ export class CreateCanalComponent implements OnInit, OnDestroy {
     this.selectedCondicion= item.id;
   }
 
+  onChangeAsociado(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    this.getAsociado();
+  }
+
+  selectEventAsociado(item) {
+    this.selectedAsociado= item.id;
+  }
+
   getCondicion(){
     this.condicionService.getAll().subscribe(response=>{
       this.condiciones = response.data;
     });
+   }
+
+   getAsociado(){
+    this.asociadoService.getAll().subscribe(response =>{
+      this.asociados = response.data;
+    })
    }
 }

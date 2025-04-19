@@ -18,14 +18,14 @@ export class AsistenciaService {
   }
 
   create(asistencia: Asistencia): Observable<any> {
-    return this.httpClient.post<Asistencia>(this.apiServer + '/addAsistencia', asistencia)
+    return this.httpClient.post<Asistencia>(this.apiServer + '/addAsistencias', asistencia)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   getById(id): Observable<any> {
-    return this.httpClient.get<Asistencia>(this.apiServer + '/getByIdAsistencia/' + id)
+    return this.httpClient.get<Asistencia>(this.apiServer + '/getByIdAsistencias/' + id)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -46,14 +46,14 @@ export class AsistenciaService {
   }
 
   update(asistencia: Asistencia): Observable<any> {
-    return this.httpClient.put<Asistencia>(this.apiServer + '/updateAsistencia', asistencia)
+    return this.httpClient.put<Asistencia>(this.apiServer + '/updateAsistencias', asistencia)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   delete(id) {
-    return this.httpClient.delete<Asistencia>(this.apiServer + '/deleteAsistencia/' + id)
+    return this.httpClient.delete<Asistencia>(this.apiServer + '/deleteAsistencias/' + id)
       .pipe(
         catchError(this.errorHandler)
       )

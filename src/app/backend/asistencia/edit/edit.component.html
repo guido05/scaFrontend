@@ -4,26 +4,30 @@
       <form class="form-group" [formGroup]="asistenciaForm">
 
         <div class="form-group">
-          <label class="col-md-0.5">{{'Condicion' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="id_condicion" id="id_condicion"
-              placeholder="{{'Condicion' | translate}}" formControlName="id_condicion">
+          <label for="asociado">{{ "Asociado" | translate }}</label>
+          <div class="ng-autocomplete">
+            <ng-autocomplete
+              [data]="asociados"
+              [searchKeyword]="keywordAsociado"  
+              (selected)="selectEventAsociado($event)"
+              (inputChanged)="onChangeAsociado($event)"
+              (inputFocused)="onFocused($event)"
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate"
+              formControlName="id_asociado"
+            >
+            </ng-autocomplete>
+  
+            <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.documento"></a>
+            </ng-template>
+  
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-md-0.5">{{'Asistencia' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="id_asistencia" id="id_asistencia"
-              placeholder="{{'Asistencia' | translate}}" formControlName="id_asistencia">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-0.5">{{'Dia' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="id_dia" id="id_dia"
-              placeholder="{{'Dia' | translate}}" formControlName="id_dia">
-          </div>
-        </div>
+        <br>
 
         <div class="form-group">
           <label class="col-md-0.5">{{'Hora Entrada' | translate}}</label>
@@ -56,14 +60,33 @@
               placeholder="{{'Observacion' | translate}}" formControlName="observacion">
           </div>
         </div>
-       
+        
         <div class="form-group">
-          <label class="col-md-0.5">{{'Subtotal' | translate}}</label>
-          <div class="col-md-5">
-            <input class="form-control" required type="text" name="subtotal" id="subtotal"
-              placeholder="{{'Subtotal' | translate}}" formControlName="subtotal">
+          <label for="condicion">{{ "Condicion" | translate }}</label>
+          <div class="ng-autocomplete">
+            <ng-autocomplete
+              [data]="condiciones"
+              [searchKeyword]="keywordCondicion"
+              (selected)="selectEventCondicion($event)"
+              (inputChanged)="onChangeCondicion($event)"
+              (inputFocused)="onFocused($event)"
+              [itemTemplate]="itemTemplateCondicion"
+              [notFoundTemplate]="notFoundTemplateCondicion"
+              formControlName="id_condicion"
+            >
+            </ng-autocomplete>
+
+            <ng-template #itemTemplateCondicion let-item>
+              <a [innerHTML]="item.descripcion"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplateCondicion let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
           </div>
         </div>
+          <br>
+
         <button type="submit" class="btn btn-primary mb-2" [disabled]="asistenciaForm.invalid"
           (click)="this.saveAsistencia()"> {{'Confirmar' | translate}}</button>
         <div class="form-group">

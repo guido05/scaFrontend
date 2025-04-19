@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let asociado of asociados">
+                        <tr *ngFor="let asociado of asociados" >
                             <td>
                                 <div class="d-inline-block align-middle">
                                     <div class="d-inline-block">
@@ -64,8 +64,8 @@
                             </td>
                             <td>
                                 <div class="d-inline-block align-middle">
-                                    <div class="d-inline-block">
-                                        <h6 class="m-b-0">{{ asociado.categorias }}</h6>
+                                    <div class="d-inline-block" *ngFor="let categoria of asociado.categorias">
+                                        <h6 class="m-b-0">{{ categoria.nombre }}</h6>
                                     </div>
                                 </div>
                             </td>
@@ -79,7 +79,8 @@
                             <td>
                                 <div>
                                     <button type="button" class="btn btn-icon btn-success" [routerLink]="'../edit/'+ asociado.id"><i class="feather icon-settings"></i></button>
-                                    <button type="button" class="btn btn-icon btn-danger" (click)="deleteAsociado(asociado.id)" title="{{'Eliminar' | translate}}"><i class="feather icon-trash-2"></i></button>
+                                    <button type="button" *ngIf="asociado.activo === 1" class="btn btn-icon btn-danger" (click)="deleteAsociado(asociado.id)" title="{{'Desactiva al empleado' | translate}}"><i class="feather icon-trash-2"></i></button>
+                                    <button type="button" *ngIf="asociado.activo === 0" class="btn btn-icon btn-success" (click)="activateAsociado(asociado.id)" title="{{'Activar al empleado' | translate}}"><i class="feather icon-power"></i></button>
 
                                 </div>
                             </td>
